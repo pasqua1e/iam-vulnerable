@@ -10,11 +10,14 @@ resource "aws_iam_policy" "fp2-allow-all" {
     Statement = [
       {
         Effect   = "Allow",
-        Action = "*",        
+        Action   = "*",
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "6f3dc55d-9ef2-4ea5-b0ec-17e62bb5a3eb"
+  }
 }
 
 resource "aws_iam_policy" "deny-all" {
@@ -29,19 +32,22 @@ resource "aws_iam_policy" "deny-all" {
     Statement = [
       {
         Effect   = "Deny",
-        Action = "*",        
+        Action   = "*",
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "57b410f2-0d89-495a-8f98-ec57437ea723"
+  }
 }
 
 
 
 
 resource "aws_iam_role" "fp2-allow-and-deny-multiple-policies-role" {
-  name                = "fp2-allow-and-deny-multiple-policies-role"
-  assume_role_policy  = jsonencode({
+  name = "fp2-allow-and-deny-multiple-policies-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -54,15 +60,21 @@ resource "aws_iam_role" "fp2-allow-and-deny-multiple-policies-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "a48827f3-0009-4053-91f4-fdfb1d344b8a"
+  }
 }
 
 resource "aws_iam_user" "fp2-allow-and-deny-multiple-policies-user" {
   name = "fp2-allow-and-deny-multiple-policies-user"
   path = "/"
+  tags = {
+    yor_trace = "d3bf1b5c-bd96-410c-8613-9ce2c74b74b6"
+  }
 }
 
 resource "aws_iam_access_key" "fp2-allow-and-deny-multiple-policies-user" {
- user = aws_iam_user.fp2-allow-and-deny-multiple-policies-user.name
+  user = aws_iam_user.fp2-allow-and-deny-multiple-policies-user.name
 }
 
 

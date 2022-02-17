@@ -6,29 +6,32 @@ resource "aws_iam_policy" "privesc21-PassExistingRoleToNewDataPipeline" {
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
-	 "Version": "2012-10-17",
-	 "Statement": [
-	   {
-		 "Effect": "Allow",
-		 "Action": "iam:PassRole",
-		 "Resource": "*"
-	  },
-	  {
-		 "Effect": "Allow",
-		 "Action": [
-			 "datapipeline:CreatePipeline",
-			 "datapipeline:PutPipelineDefinition",
-			 "datapipeline:ActivatePipeline"
-		 ],
-		 "Resource": "*"
-	  }
-   ]
-})
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : "iam:PassRole",
+        "Resource" : "*"
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "datapipeline:CreatePipeline",
+          "datapipeline:PutPipelineDefinition",
+          "datapipeline:ActivatePipeline"
+        ],
+        "Resource" : "*"
+      }
+    ]
+  })
+  tags = {
+    yor_trace = "4d485b96-818a-4650-99c5-ee59f2a2bac6"
+  }
 }
 
 resource "aws_iam_role" "privesc21-PassExistingRoleToNewDataPipeline-role" {
-  name                = "privesc21-PassExistingRoleToNewDataPipeline-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc21-PassExistingRoleToNewDataPipeline-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -41,11 +44,17 @@ resource "aws_iam_role" "privesc21-PassExistingRoleToNewDataPipeline-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "b61e8d96-8cf0-4f88-9e69-3710ffc3005a"
+  }
 }
 
 resource "aws_iam_user" "privesc21-PassExistingRoleToNewDataPipeline-user" {
   name = "privesc21-PassExistingRoleToNewDataPipeline-user"
   path = "/"
+  tags = {
+    yor_trace = "911fb6b0-01b3-4a86-97a5-783b13bbdffc"
+  }
 }
 
 resource "aws_iam_access_key" "privesc21-PassExistingRoleToNewDataPipeline-user" {

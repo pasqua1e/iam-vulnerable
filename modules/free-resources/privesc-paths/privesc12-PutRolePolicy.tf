@@ -9,17 +9,20 @@ resource "aws_iam_policy" "privesc12-PutRolePolicy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "iam:PutRolePolicy"
+        Action   = "iam:PutRolePolicy"
         Effect   = "Allow"
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "a204ec8b-ba58-42be-9bd2-cad3200c8970"
+  }
 }
 
 resource "aws_iam_role" "privesc12-PutRolePolicy-role" {
-  name                = "privesc12-PutRolePolicy-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc12-PutRolePolicy-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -32,11 +35,17 @@ resource "aws_iam_role" "privesc12-PutRolePolicy-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "3fd5c505-2420-4233-8e8a-c842dadf45fb"
+  }
 }
 
 resource "aws_iam_user" "privesc12-PutRolePolicy-user" {
   name = "privesc12-PutRolePolicy-user"
   path = "/"
+  tags = {
+    yor_trace = "7e25ca85-c79c-45af-86bb-2579337e38a6"
+  }
 }
 
 resource "aws_iam_access_key" "privesc12-PutRolePolicy-user" {

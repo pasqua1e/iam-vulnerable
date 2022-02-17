@@ -10,20 +10,23 @@ resource "aws_iam_policy" "privesc15-PassExistingRoleToNewLambdaThenInvoke" {
     Statement = [
       {
         Action = [
-	      "lambda:CreateFunction",
- 			  "iam:PassRole",
-			  "lambda:InvokeFunction"
+          "lambda:CreateFunction",
+          "iam:PassRole",
+          "lambda:InvokeFunction"
         ]
         Effect   = "Allow"
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "4a7d3061-af35-47c2-a9d7-104e1d2bb8b7"
+  }
 }
 
 resource "aws_iam_role" "privesc15-PassExistingRoleToNewLambdaThenInvoke-role" {
-  name                = "privesc15-PassExistingRoleToNewLambdaThenInvoke-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc15-PassExistingRoleToNewLambdaThenInvoke-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -36,11 +39,17 @@ resource "aws_iam_role" "privesc15-PassExistingRoleToNewLambdaThenInvoke-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "29f9e63c-b4f9-4d60-abf1-c5d80c719e97"
+  }
 }
 
 resource "aws_iam_user" "privesc15-PassExistingRoleToNewLambdaThenInvoke-user" {
   name = "privesc15-PassExistingRoleToNewLambdaThenInvoke-user"
   path = "/"
+  tags = {
+    yor_trace = "615fcc73-a6c4-48d6-8fd1-9718f92ecab8"
+  }
 }
 
 resource "aws_iam_access_key" "privesc15-PassExistingRoleToNewLambdaThenInvoke-user" {
