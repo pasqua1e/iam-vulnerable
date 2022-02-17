@@ -10,22 +10,25 @@ resource "aws_iam_policy" "privesc3-CreateEC2WithExistingInstanceProfile" {
     Statement = [
       {
         Action = [
-	      "iam:PassRole",
-        "ec2:DescribeInstances",
-        "ec2:RunInstances",
-        "ec2:CreateKeyPair",
-        "ec2:AssociateIamInstanceProfile"
+          "iam:PassRole",
+          "ec2:DescribeInstances",
+          "ec2:RunInstances",
+          "ec2:CreateKeyPair",
+          "ec2:AssociateIamInstanceProfile"
         ]
         Effect   = "Allow"
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "85462648-3963-49fe-9905-951d30a31e89"
+  }
 }
 
 resource "aws_iam_role" "privesc3-CreateEC2WithExistingInstanceProfile-role" {
-  name                = "privesc3-CreateEC2WithExistingInstanceProfile-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc3-CreateEC2WithExistingInstanceProfile-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -38,6 +41,9 @@ resource "aws_iam_role" "privesc3-CreateEC2WithExistingInstanceProfile-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "95e0efce-223c-4e5f-bd5b-025735ac892e"
+  }
 }
 
 
@@ -45,6 +51,9 @@ resource "aws_iam_role" "privesc3-CreateEC2WithExistingInstanceProfile-role" {
 resource "aws_iam_user" "privesc3-CreateEC2WithExistingInstanceProfile-user" {
   name = "privesc3-CreateEC2WithExistingInstanceProfile-user"
   path = "/"
+  tags = {
+    yor_trace = "8eccc5de-5ad7-452b-9a00-3132a84b125c"
+  }
 }
 
 

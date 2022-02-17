@@ -9,17 +9,20 @@ resource "aws_iam_policy" "privesc4-CreateAccessKey" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "iam:CreateAccessKey"
+        Action   = "iam:CreateAccessKey"
         Effect   = "Allow"
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "7c819613-87a9-4062-9b76-56226abe0aa7"
+  }
 }
 
 resource "aws_iam_role" "privesc4-CreateAccessKey-role" {
-  name                = "privesc4-CreateAccessKey-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc4-CreateAccessKey-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -32,16 +35,22 @@ resource "aws_iam_role" "privesc4-CreateAccessKey-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "780bfdd0-a301-41df-b301-c36eed07ebd3"
+  }
 }
 
 
 resource "aws_iam_user" "privesc4-CreateAccessKey-user" {
   name = "privesc4-CreateAccessKey-user"
   path = "/"
+  tags = {
+    yor_trace = "f4f2accd-821a-4838-be87-1024a32ba178"
+  }
 }
 
 resource "aws_iam_access_key" "privesc4-CreateAccessKey-user" {
- user = aws_iam_user.privesc4-CreateAccessKey-user.name
+  user = aws_iam_user.privesc4-CreateAccessKey-user.name
 }
 
 resource "aws_iam_user_policy_attachment" "privesc4-CreateAccessKey-user-attach-policy" {

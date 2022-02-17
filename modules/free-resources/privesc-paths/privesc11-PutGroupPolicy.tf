@@ -9,17 +9,20 @@ resource "aws_iam_policy" "privesc11-PutGroupPolicy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "iam:PutGroupPolicy"
+        Action   = "iam:PutGroupPolicy"
         Effect   = "Allow"
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "d309907f-5b7c-440d-981d-38f8cefc9021"
+  }
 }
 
 resource "aws_iam_role" "privesc11-PutGroupPolicy-role" {
-  name                = "privesc11-PutGroupPolicy-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc11-PutGroupPolicy-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -32,16 +35,22 @@ resource "aws_iam_role" "privesc11-PutGroupPolicy-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "f4a2243c-f40b-4d54-a73a-5a2bb01795e7"
+  }
 }
 
 resource "aws_iam_user" "privesc11-PutGroupPolicy-user" {
   name = "privesc11-PutGroupPolicy-user"
   path = "/"
+  tags = {
+    yor_trace = "2bd132c6-f0a3-4cff-8f2d-e8a0c5eb6351"
+  }
 }
 
- resource "aws_iam_access_key" "privesc11-PutGroupPolicy-user" {
-   user = aws_iam_user.privesc11-PutGroupPolicy-user.name
- }
+resource "aws_iam_access_key" "privesc11-PutGroupPolicy-user" {
+  user = aws_iam_user.privesc11-PutGroupPolicy-user.name
+}
 
 
 resource "aws_iam_user_policy_attachment" "privesc11-PutGroupPolicy-user-attach-policy" {

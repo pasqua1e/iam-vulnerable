@@ -10,20 +10,23 @@ resource "aws_iam_policy" "privesc16-PassRoleToNewLambdaThenTriggerWithNewDynamo
     Statement = [
       {
         Action = [
-	      "lambda:CreateFunction",
- 			  "iam:PassRole",
-			  "lambda:CreateEventSourceMapping"
+          "lambda:CreateFunction",
+          "iam:PassRole",
+          "lambda:CreateEventSourceMapping"
         ]
         Effect   = "Allow"
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "a883b5d6-ca56-4a73-a1e4-39b003ee1e1b"
+  }
 }
 
 resource "aws_iam_role" "privesc16-PassRoleToNewLambdaThenTriggerWithNewDynamo-role" {
-  name                = "privesc16-PassRoleToNewLambdaThenTriggerWithNewDynamo-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc16-PassRoleToNewLambdaThenTriggerWithNewDynamo-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -36,11 +39,17 @@ resource "aws_iam_role" "privesc16-PassRoleToNewLambdaThenTriggerWithNewDynamo-r
       },
     ]
   })
+  tags = {
+    yor_trace = "3a056e68-692d-47f5-b3d8-58d404ab686e"
+  }
 }
 
 resource "aws_iam_user" "privesc16-PassRoleToNewLambdaThenTriggerWithNewDynamo-user" {
   name = "privesc16-PassRoleToNewLambdaThenTriggerWithNewDynamo-user"
   path = "/"
+  tags = {
+    yor_trace = "8c21264c-e9dd-4511-a37d-52e0c292519a"
+  }
 }
 
 resource "aws_iam_access_key" "privesc16-PassRoleToNewLambdaThenTriggerWithNewDynamo-user" {

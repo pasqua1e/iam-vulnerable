@@ -9,17 +9,20 @@ resource "aws_iam_policy" "privesc8-AttachGroupPolicy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "iam:AttachGroupPolicy"
+        Action   = "iam:AttachGroupPolicy"
         Effect   = "Allow"
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "b30d97b3-9bd4-4fc1-81ec-7e3ac114f311"
+  }
 }
 
 resource "aws_iam_role" "privesc8-AttachGroupPolicy-role" {
-  name                = "privesc8-AttachGroupPolicy-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc8-AttachGroupPolicy-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -32,16 +35,22 @@ resource "aws_iam_role" "privesc8-AttachGroupPolicy-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "0180305c-70d8-4bb2-ad83-21d7bfe47d8c"
+  }
 }
 
 resource "aws_iam_user" "privesc8-AttachGroupPolicy-user" {
   name = "privesc8-AttachGroupPolicy-user"
   path = "/"
+  tags = {
+    yor_trace = "f3af19e4-9600-4e51-b16a-7a694e2190f7"
+  }
 }
 
- resource "aws_iam_access_key" "privesc8-AttachGroupPolicy-user" {
-   user = aws_iam_user.privesc8-AttachGroupPolicy-user.name
- }
+resource "aws_iam_access_key" "privesc8-AttachGroupPolicy-user" {
+  user = aws_iam_user.privesc8-AttachGroupPolicy-user.name
+}
 
 
 resource "aws_iam_user_policy_attachment" "privesc8-AttachGroupPolicy-user-attach-policy" {

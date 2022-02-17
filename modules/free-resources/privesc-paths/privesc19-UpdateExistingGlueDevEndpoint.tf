@@ -10,19 +10,22 @@ resource "aws_iam_policy" "privesc19-UpdateExistingGlueDevEndpoint" {
     Statement = [
       {
         Action = [
-	      "glue:UpdateDevEndpoint",
-        "glue:GetDevEndpoint"
+          "glue:UpdateDevEndpoint",
+          "glue:GetDevEndpoint"
         ]
         Effect   = "Allow"
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "8e930aef-f9c3-43e0-a557-d283482058a4"
+  }
 }
 
 resource "aws_iam_role" "privesc19-UpdateExistingGlueDevEndpoint-role" {
-  name                = "privesc19-UpdateExistingGlueDevEndpoint-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc19-UpdateExistingGlueDevEndpoint-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -35,11 +38,17 @@ resource "aws_iam_role" "privesc19-UpdateExistingGlueDevEndpoint-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "276ca4a1-7dd9-4f99-ba2f-e833833ca712"
+  }
 }
 
 resource "aws_iam_user" "privesc19-UpdateExistingGlueDevEndpoint-user" {
   name = "privesc19-UpdateExistingGlueDevEndpoint-user"
   path = "/"
+  tags = {
+    yor_trace = "00380139-5c95-4fa4-ac67-23d479710159"
+  }
 }
 
 resource "aws_iam_access_key" "privesc19-UpdateExistingGlueDevEndpoint-user" {

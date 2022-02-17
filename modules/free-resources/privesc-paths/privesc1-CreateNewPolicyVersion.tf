@@ -9,17 +9,20 @@ resource "aws_iam_policy" "privesc1-CreateNewPolicyVersion" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "iam:CreatePolicyVersion"
+        Action   = "iam:CreatePolicyVersion"
         Effect   = "Allow"
         Resource = "*"
       },
     ]
   })
+  tags = {
+    yor_trace = "4a78bdc9-8beb-4d1c-a5c9-572bb59596dc"
+  }
 }
 
 resource "aws_iam_role" "privesc1-CreateNewPolicyVersion-role" {
-  name                = "privesc1-CreateNewPolicyVersion-role"
-  assume_role_policy  = jsonencode({
+  name = "privesc1-CreateNewPolicyVersion-role"
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -32,16 +35,22 @@ resource "aws_iam_role" "privesc1-CreateNewPolicyVersion-role" {
       },
     ]
   })
+  tags = {
+    yor_trace = "c01b4ff4-4b65-4751-aafc-5f1bffc8feda"
+  }
 }
 
 
 resource "aws_iam_user" "privesc1-CreateNewPolicyVersion-user" {
   name = "privesc1-CreateNewPolicyVersion-user"
   path = "/"
+  tags = {
+    yor_trace = "ed4a89ce-1e21-4f3e-b0b8-c87644cbe107"
+  }
 }
 
 resource "aws_iam_access_key" "privesc1-CreateNewPolicyVersion-user" {
- user = aws_iam_user.privesc1-CreateNewPolicyVersion-user.name
+  user = aws_iam_user.privesc1-CreateNewPolicyVersion-user.name
 }
 
 
